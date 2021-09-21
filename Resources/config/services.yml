@@ -1,0 +1,37 @@
+services:
+    twig.extension.stringloader:
+        class: Twig_Extension_StringLoader
+        tags:
+            - { name: twig.extension }
+
+    ip_page.form.type:
+        class: Ip\PageBundle\Form\Type\IpPageType
+        arguments: {
+                $rootDir: '%kernel.root_dir%',
+                $prefix: '%ip_page.assets_path%',
+                $pBiblio: '%ip_bibliotheque.assets_path%',
+                $bgcolor: '%ip_page.bgcolor%',
+                $color: '%ip_page.color%',
+                $modules: '%ip_page.modules%',
+                $fonts: '%ip_page.font.fonts%',
+                $ignores: '%ip_page.font.ignores%',
+                $folderWebfont: '%ip_page.webfont%',
+                $customSections: '%ip_page.custom%',
+                $customRoot: '%ip_page.custom.root%'
+            }
+        tags:
+            - { name: form.type }
+
+    ip_page.to_template:
+        class: Ip\PageBundle\EventListener\PageFormatterListener
+        arguments: { $urlArticle: "%ip_page.article.url%", $container: "@service_container" }
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    ip_page.twig.app_extension:
+        class: Ip\PageBundle\Twig\IpPageAppExtension
+        arguments: { $prefix: '%ip_page.assets_path%' }
+        public: false
+        tags:
+            - { name : twig.extension }

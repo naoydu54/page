@@ -1,0 +1,38 @@
+<ul class="iconlist">
+    {% for icon in icons %}
+        <li class="icon">
+            {{ icon.value | raw }}
+        </li>
+    {% else %}
+        <li class="noicon">Aucune Icone</li>
+    {% endfor %}
+</ul>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ippage-icon-color">Couleur</label>
+            <input type="text" id="ippage-icon-color" class="form-control ipage-select-color" data-control="hue" value="#000000">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ippage-icon-bgcolor">Couleur de fond</label>
+            <input type="text" id="ippage-icon-bgcolor" class="form-control ipage-select-color" data-control="hue" value="#ffffff">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ippage-icon-color-hover">Couleur lors du survol</label>
+            <input type="text" id="ippage-icon-color-hover" class="form-control ipage-select-color" data-control="hue" value="#000000">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ippage-icon-bgcolor-hover">Couleur de fond lors du survol</label>
+            <input type="text" id="ippage-icon-bgcolor-hover" class="form-control ipage-select-color" data-control="hue" value="#ffffff">
+        </div>
+    </div>
+</div>

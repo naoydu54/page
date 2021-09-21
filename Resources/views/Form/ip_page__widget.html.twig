@@ -1,0 +1,27 @@
+{% block ip_page_widget %}
+    {% spaceless %}
+        {{ include('@IpPage/Page/helper/assets_css.html.twig', {'prefix': form.vars.prefix}) }}
+        <style>
+            .pagemaker-save, .pagemaker-delete{
+                display: none;
+            }
+        </style>
+        {{ include("@IpPage/Page/helper/assets_js.html.twig", {'prefix': form.vars.prefix}) }}
+        <script type="text/javascript" charset="utf-8">
+        </script>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12" style="padding: 0;">
+                    <div id="input-{{ form.vars.id }}" data-idelement="1">
+                        <div class="row">
+                            <div class="col-xs-12 text-center" style="margin-top: 20px">
+                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <textarea id="{{ form.vars.id }}" {{ block('widget_attributes') }} style="display: none">{% if value is not empty %}{{ value }}{% endif %}</textarea>
+    {% endspaceless %}
+{% endblock ip_page_widget %}

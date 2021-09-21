@@ -1,0 +1,22 @@
+{
+    "name" : "ip/pagebundle",
+    "description" : "Bundle de mise en page",
+    "keywords" : ["Info Plus", "page bundle"],
+    "type" : "symfony-bundle",
+    "license" : "MIT",
+    "authors" : [{
+        "name" : "Info Plus",
+        "email" : "contact@info-plus.fr"
+    }],
+    "require" : {
+        "php": ">=5.4",
+        "components/ippage": "^2.1",
+        "ip/bibliothequebundle": "^1.1",
+        "thesoftwarefanatics/php-html-parser": "^1.8.0"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Ip\\PageBundle\\" : ""
+        }
+    }
+}

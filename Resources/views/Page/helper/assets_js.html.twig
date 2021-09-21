@@ -1,0 +1,57 @@
+<script>
+    function afterLoad() {
+        var scripts = [
+            '{{ asset("#{pBiblio}/plugins/pixlr/pixlr.js") }}',
+            '{{ asset("#{pBiblio}/plugins/nicescroll/jquery.nicescroll.min.js") }}',
+            '{{ asset("#{pBiblio}/plugins/bootstrap-dialog/js/bootstrap-dialog.min.js") }}',
+            '{{ asset("#{pBiblio}/plugins/EventEmitter/EventEmitter.min.js") }}',
+            '{{ asset("#{pBiblio}/plugins/context-menu/jquery.ui.position.js") }}',
+            '{{ asset("#{pBiblio}/plugins/is.js/is.min.js") }}',
+            '{{ asset("#{pBiblio}/plugins/dropzone/min/dropzone.min.js") }}',
+            '{{ asset("#{pBiblio}/plugins/unveil/jquery.unveil.js") }}',
+            '{{ asset("#{pBiblio}/plugins/context-menu/jquery.contextMenu.js") }}',
+            '{{ asset("#{prefix}/plugins/summernote/summernote.min.js") }}',
+            '{{ asset("#{prefix}/plugins/mustache/mustache.min.js") }}',
+            '{{ asset("#{prefix}/plugins/minicolors/jquery.minicolors.min.js") }}',
+            '{{ asset("#{pBiblio}/plugins/bibliotheque/jquery.bibliotheque.js") }}',
+            '{{ asset("#{prefix}/plugins/pagemaker/js/jquery.pagemaker.js") }}',
+        ];
+
+        var queue = scripts.map(function (script) {
+            return $.getScript(script);
+        });
+
+        $.when.apply(null, queue).done(function () {
+            $('#input-{{ form.vars.id }}').html($('#{{ form.vars.id }}').val());
+            $('#input-{{ form.vars.id }}').pagemaker({
+                id_element: $(this).data('idelement'),
+                pluginRoot: "{{ asset("#{prefix}/plugins/pagemaker/") }}",
+                saveURL: "{{ path('ip_page_save') }}",
+                textaera: '#{{ form.vars.id }}',
+                colors: {
+                    bgcolor: "{{ bgcolor }}",
+                    color: "{{ color }}"
+                },
+                biblioRoot: "{{ asset("#{pBiblio}/plugins/bibliotheque") }}",
+                url_biblio_rename: "{{ path('ip_bibliotheque_rename') }}",
+                url_biblio_delete: "{{ path('ip_bibliotheque_delete') }}",
+                url_biblio_add: "{{ path('ip_bibliotheque_add') }}",
+                url_biblio: "{{ path('ip_bibliotheque_folders') }}",
+                url_upload: "{{ path('ip_bibliotheque_add') }}",
+                url_icons: "{{ path('ip_page_icons') }}",
+                modules: {{ modules | raw }},
+                fonts: {{ fonts | raw }},
+                ignores: {{ ignores | raw }},
+                customSections: "{{ asset("#{customSections}") }}",
+                customRootFolder: "{{ asset("#{customRoot}") }}"
+            });
+            $('form[name="{{ ipPageFormGetParent(form).vars.id }}"]').submit(function (event) {
+                $('.pagemaker-save').click();
+            });
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        afterLoad();
+    });
+</script>

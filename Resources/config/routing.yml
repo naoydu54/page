@@ -1,0 +1,11 @@
+ip_page_homepage:
+    path:     /
+    defaults: { _controller: IpPageBundle:Page:index }
+
+ip_page_icons:
+    path:     /icons
+    defaults: { _controller: IpPageBundle:Page:icons }
+
+ip_page_save:
+    path:     /ajax/save
+    defaults: { _controller: IpPageBundle:Page:save }
